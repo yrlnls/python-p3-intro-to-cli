@@ -78,7 +78,7 @@ produce a grade report a full class of students; we're going to use Python's
 #!/usr/bin/env python3
 
 def create_grade_report(student_grades):
-    with open('reports/grade_report.txt', 'w') as gr:
+    with open('lib/grade_report.txt', 'w') as gr:
         gr.write(student_grades)
 
 if __name__ == '__main__':
@@ -102,7 +102,7 @@ grades line-by-line:
 #!/usr/bin/env python3
 
 def create_grade_report(student_grades):
-    with open('reports/grade_report.txt', 'w') as gr:
+    with open('lib/grade_report.txt', 'w') as gr:
         for grade in student_grades:
             # add '\n' to write grades on separate lines
             gr.write(grade + '\n')
