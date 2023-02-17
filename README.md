@@ -40,8 +40,8 @@ carried out through a CLI._
 ## Building a Simple CLI
 
 Before we dive into best practices for Python CLIs, let's build a very simple
-CLI. Fork this lesson from GitHub and open up `lib/grade_reports.py` to follow
-along.
+CLI. Fork and clone this lesson from GitHub and open up `grade_reports.py`
+from the `lib/` directory to follow along.
 
 The first thing that we need to do is scaffold our CLI so that it can be run
 from the command line. To do this, we'll need to create a script. There are two
@@ -58,15 +58,15 @@ if __name__ == '__main__':
 Remember that the shebang tells the command line that this program should be
 executed using the Python 3 interpreter. We can technically still run this as a
 script without it, but that would require us to write
-`python lib/grade_reports.py` every time we wanted to do so. Since other
+`python grade_reports.py` every time we wanted to do so. Since other
 programmers using your CLI might not know about this requirement, you should
-always include the shebang. Run `chmod +x lib/grade_reports.py` to make your
-script executable.
+always include the shebang. In the `lib/` directory, run
+`chmod +x grade_reports.py` to make your script executable.
 
 The `if __name__ == '__main__'` block tells the interpreter that this script
-should only be run if `lib/grade_reports.py` itself is being called from the
+should only be run if `./grade_reports.py` itself is being called from the
 command line. This is important if you want to import any objects from
-`lib/grade_reports.py` into other modules- if you don't include this code block,
+`grade_reports.py` into other modules- if you don't include this code block,
 the full script will be run whenever your other module runs the import. That's
 not likely to be a helpful feature in your CLI.
 
@@ -78,7 +78,7 @@ produce a grade report a full class of students; we're going to use Python's
 #!/usr/bin/env python3
 
 def create_grade_report(student_grades):
-    with open('lib/grade_report.txt', 'w') as gr:
+    with open('reports/grade_report.txt', 'w') as gr:
         gr.write(student_grades)
 
 if __name__ == '__main__':
@@ -86,7 +86,7 @@ if __name__ == '__main__':
     create_grade_report(student_grades)
 ```
 
-Run `lib/grade_reports.py` to execute your script:
+Run `./grade_reports.py` to execute your script:
 
 ```console
 Student name, grade: Ben, F
@@ -102,7 +102,7 @@ grades line-by-line:
 #!/usr/bin/env python3
 
 def create_grade_report(student_grades):
-    with open('lib/grade_report.txt', 'w') as gr:
+    with open('./reports/grade_report.txt', 'w') as gr:
         for grade in student_grades:
             # add '\n' to write grades on separate lines
             gr.write(grade + '\n')
@@ -142,7 +142,7 @@ Student name, grade: Katie, A
 Student name, grade:             # hit enter to complete
 ```
 
-Check the `reports` directory again- nowyou should see that `grade_report.txt`
+Check the `reports/` directory again- nowyou should see that `grade_report.txt`
 has been regenerated and contains grades for all of your students!
 
 There are still, of course, many ways to improve this CLI. The instructions
@@ -197,6 +197,9 @@ Here, we've factored most of our code into a class `MyClass` and a function
 may find it necessary at times to include `for` loops, `while` loops, and
 `if/elif/else` statements in this portion of the CLI, but make sure to separate
 and organize your code into classes and functions whenever possible.
+
+To make this even clearer, you can separate related functions and classes into
+different files and **import** them into your CLI script.
 
 ### Validate User Input
 
